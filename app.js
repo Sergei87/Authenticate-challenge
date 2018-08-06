@@ -1,3 +1,4 @@
+require('./env')
 const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
@@ -6,6 +7,7 @@ const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt');
 const User = require('./model/user')
 const R = require('ramda')
+const { connectionParams } = require('./db')
 const pgSessionStore = require('connect-pg-simple')(session)
 const saltRounds = 10;
 
@@ -41,10 +43,11 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(session({
   store: new pgSessionStore({
-    conString: `postgres://postgres:postgres@localhost:5432/postgres`,
-    tableName: 'user_session'
+    conObject: connectionParams,
+    tableName: 'user_session',
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }
   }),
-  secret: 'Exch4ng3',
+  secret: process.env.secret,
   resave: false,
   saveUninitialized: false,
 }))
