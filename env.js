@@ -5,8 +5,9 @@ const initEnvVariable = (_default,k)=>
 
 R.mapObjIndexed(initEnvVariable, {
   db_host: "localhost",
-  db_port: 5234,
+  db_port: 5432,
   db_name: 'postgres',
   db_username: 'postgres',
-  db_password: 'postgers'
+  db_password: 'postgers',
+  secret: 'Exch4ng3'
 })

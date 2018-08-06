@@ -2,13 +2,14 @@ const { db } = require('../db')
 const R = require('ramda')
 
 const createUserTable = () =>
-  db.query('CREATE TABLE public.users ( \
+  db.query('CREATE TABLE public.users( \
+      id integer NOT NULL DEFAULT nextval(\'users_id_seq\'::regclass), \
       username text, \
       password character varying(256), \
       role text, \
       subordinates integer[], \
-      id integer NOT NULL DEFAULT nextval(\'users_id_seq\'::regclass), \
-      CONSTRAINT users_pkey PRIMARY KEY (id))')
+      CONSTRAINT users_pkey PRIMARY KEY (id) ) \
+    WITH (OIDS=FALSE)')
 
 const createUserSessionTable = () =>
   db.query('CREATE TABLE public.user_session ( \
@@ -45,5 +46,5 @@ module.exports = {
   findById,
   changeUserRoles,
   getAll,
-  getByIds
+  getByIds,
 }
