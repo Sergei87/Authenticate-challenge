@@ -39,8 +39,9 @@ passport.deserializeUser((id, done) => {
     .catch(err => done(err))
 });
 
-app.use(express.static('public'));
+app.use(express.static('front/dist/front'));
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(session({
   store: new pgSessionStore({
     conObject: connectionParams,
@@ -55,6 +56,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.post('/register', (req, res, next) => {
+  console.log(req.body);
   User.findUser(req.body.username)
     .then(user => {
       if (user) {
@@ -75,6 +77,7 @@ app.post('/register', (req, res, next) => {
 })
 
 app.post('/login', (req, res, next) => {
+  console.log(req.body);
   passport.authenticate('local', (err, user, info) => {
     if (err) return next(err)
     if (user) {
@@ -88,6 +91,7 @@ app.post('/login', (req, res, next) => {
 })
 
 app.post('/subordinates', (req, res, next) => {
+  console.log(req.body);
   if (!req.user) return res.redirect('/')
   if (req.user.role === 'admin') {
     return User.getAll()
