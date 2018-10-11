@@ -1,7 +1,13 @@
+const R = require('ramda')
 
-process.env.db_host = 'localhost'
-process.env.db_port = 5432
-process.env.db_name = 'postgres'
-process.env.db_username = 'postgres'
-process.env.db_password = 'postgres'
-process.env.secret = 'Exch4ng3'
+const initEnvVariable = (_default,k)=>
+  process.env[k] = R.defaultTo(_default, process.env[k])
+
+R.mapObjIndexed(initEnvVariable, {
+  db_host: "localhost",
+  db_port: 5432,
+  db_name: 'postgres',
+  db_username: 'postgres',
+  db_password: 'postgers',
+  secret: 'Exch4ng3'
+})
