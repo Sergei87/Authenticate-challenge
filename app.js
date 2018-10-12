@@ -82,7 +82,7 @@ app.post('/login', (req, res, next) => {
     if (err) return next(err)
     if (user) {
       req.logIn(user, function(err) {
-        return err ? next(err) : res.redirect('/private');
+        return err ? next(err) : res.send(user);
       })
     }
     else res.redirect('/')
