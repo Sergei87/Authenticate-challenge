@@ -1,22 +1,7 @@
 const { db } = require('../db')
 const R = require('ramda')
 
-const createUserTable = () =>
-  db.query('CREATE TABLE public.users( \
-      id integer NOT NULL DEFAULT nextval(\'users_id_seq\'::regclass), \
-      username text, \
-      password character varying(256), \
-      role text, \
-      subordinates integer[], \
-      CONSTRAINT users_pkey PRIMARY KEY (id) ) \
-    WITH (OIDS=FALSE)')
 
-const createUserSessionTable = () =>
-  db.query('CREATE TABLE public.user_session ( \
-    sid character varying NOT NULL, \
-    sess json NOT NULL, \
-    expire timestamp(6) without time zone NOT NULL, \
-    CONSTRAINT user_session_pkey PRIMARY KEY (sid))')
 
 const createUser  = user =>
   db.one('INSERT INTO "users" (username, password, role) \
@@ -38,7 +23,6 @@ const getAll = () =>
 
 const getByIds = ids =>
   db.query('SELECT id, username, role, subordinates FROM "users" WHERE id = ANY(${ids})', {ids})
-
 
 module.exports = {
   createUser,

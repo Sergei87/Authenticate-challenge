@@ -9,6 +9,7 @@ const connectionParams = {
   user: process.env.db_username,
   password: process.env.db_password
 }
+
 const db = pgp(connectionParams)
 
 module.exports = {

@@ -8,6 +8,6 @@ R.mapObjIndexed(initEnvVariable, {
   db_port: 5432,
   db_name: 'postgres',
   db_username: 'postgres',
-  db_password: 'postgers',
+  db_password: 'postgres',//'postgers',
   secret: 'Exch4ng3'
 })
