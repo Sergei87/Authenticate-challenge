@@ -11,7 +11,7 @@ const { connectionParams } = require('./db')
 const pgSessionStore = require('connect-pg-simple')(session)
 const saltRounds = 10;
 
-const app =  express()
+const app = express()
 
 passport.use(new LocalStrategy({
   usernameField: 'username',
@@ -121,3 +121,5 @@ app.post('/change/role', (req, res) => {
 app.listen(8000, () => {
   console.info('Server start on port 8000')
 })
+
+module.exports = app;
