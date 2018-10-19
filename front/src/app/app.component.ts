@@ -14,7 +14,11 @@ export class AppComponent {
   constructor(private auth: AuthService) {}
 
   public logIn() {
-    this.auth.logIn('olya', 'hammer69').subscribe(data => console.log('*******',data))
+    this.auth.logIn('olya', 'hammer69')
+      .subscribe(
+        data => console.log('*******', data),
+        err => console.log('------', err)
+      )
   }
 
 }

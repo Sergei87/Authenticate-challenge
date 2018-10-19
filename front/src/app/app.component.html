@@ -17,6 +17,20 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
+<h1>TEST</h1>
+<form class="" action="/login" method="post" (ngSubmit)="onSubmit()">
+  <div class="">
+    <label for="">Username</label>
+    <input type="text" name="username" value="">
+  </div>
+  <div class="">
+    <label for="">Password</label>
+    <input type="password" name="password" value="">
+  </div>
+  <div class="">
+    <input type="submit" name="" value="LogIn">
+  </div>
+</form>
 <button type="button" name="button" (click)="logIn($event)">Логин</button>
 <button type="button" name="button">Регистрация</button>
 <router-outlet></router-outlet>
