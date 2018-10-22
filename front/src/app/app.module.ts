@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { StartComponent } from './start/start.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { StartComponent } from './start/start.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    StartComponent
+    StartComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

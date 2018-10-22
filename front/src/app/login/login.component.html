@@ -1,3 +1,15 @@
-<p>
-  login works!
-</p>
+<div class="container">
+    <form class="login-form" (submit)="loginUser($event)">
+      <h1>Login: </h1>
+      <div>
+        <label  for="username">Username: </label>
+        <input id="username" type="text" name="username" value="">
+      </div>
+      <div>
+        <label for="password">Password: </label>
+        <input id="password" type="password" name="password" value="">
+      </div>
+        <button class="button btn-success" type="submit">Login</button>
+        <button class="button" type="button" (click)="onCancel()">Cancel</button>
+    </form>
+</div>

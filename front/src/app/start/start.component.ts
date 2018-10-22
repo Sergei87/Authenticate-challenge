@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router'
 import { AuthService } from '../services/auth.service'
 import { Observable } from 'rxjs'
@@ -8,18 +8,7 @@ import { Observable } from 'rxjs'
   templateUrl: './start.component.html',
   styleUrls: ['./start.component.styl']
 })
-export class StartComponent implements OnInit {
+export class StartComponent {
 
   constructor(private auth: AuthService, private router: Router) { }
-
-  ngOnInit() {
-  }
-
-  public logIn() {
-    this.router.navigate(['./login'])
-  }
-  public register() {
-    this.router.navigate(['./register'])
-  }
-
 }
