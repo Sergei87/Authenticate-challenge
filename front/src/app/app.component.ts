@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service'
-import { Observable } from 'rxjs'
 
 
 @Component({
@@ -11,14 +9,6 @@ import { Observable } from 'rxjs'
 
 export class AppComponent {
   title = 'front';
-  constructor(private auth: AuthService) {}
-
-  public logIn() {
-    this.auth.logIn('olya', 'hammer69')
-      .subscribe(
-        data => console.log('*******', data),
-        err => console.log('------', err)
-      )
-  }
+  constructor() {}
 
 }

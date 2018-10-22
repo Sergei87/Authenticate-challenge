@@ -30,11 +30,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.post('/register', (req, res, next) => {
-  console.log(req.body);
-  findUser(req.body.username)
+  // console.log(req.body);
+  return findUser(req.body.username)
     .then(user => {
       if (user) {
-        res.sendStatus(401).end("User with this name already exist")
+        res.status(401).end("User with this name already exist")
         return Promise.reject('User exist')
       }
       return bcrypt.hash(req.body.password, saltRounds)
@@ -52,16 +52,15 @@ app.post('/register', (req, res, next) => {
 })
 
 app.post('/login', (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   passport.authenticate('local', (err, user, info) => {
     if (err) return next(err)
     if (user) {
       req.logIn(user, function(err) {
-        return err ? next(err) : res.send(user);
+        return err ? next(err) : res.status(200).send(user);
       })
     }
-    else res.status(401).send({message: 'Authentication failed. Wrong password'})
-
+    else next(err)//res.status(401).send({message: 'Authentication failed. Wrong password'})
   })(req, res, next)
 })
 
