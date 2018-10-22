@@ -30,7 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.post('/register', (req, res, next) => {
-  // console.log(req.body);
+  console.log(req.body);
   return findUser(req.body.username)
     .then(user => {
       if (user) {
@@ -43,9 +43,8 @@ app.post('/register', (req, res, next) => {
       createUser({username: req.body.username, password: hash})
     )
     .then((user) => {
-      res.sendStatus(201)
       req.logIn(user, function(err) {
-        return err ? res.status(401) : res.redirect('/private');
+        return err ? res.status(401) : res.status(201).send(user);
       })
     })
     .catch(err => {console.log('Rigister error', err); res.sendStatus(401)})

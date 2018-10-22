@@ -8,7 +8,11 @@ export class AuthService {
 
   constructor(private http: HttpClient ) { }
 
-  logIn(username, password) {
+  public logIn(username, password) {
     return this.http.post('/login', { username, password })
+  }
+
+  public registrate(username, password) {
+    return this.http.post('/register', { username, password })
   }
 }

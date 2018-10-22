@@ -13,8 +13,11 @@ export class LoginComponent {
 
   public loginUser(e) {
     e.preventDefault()
-    console.log(event)
-    this.auth.logIn()
+
+    const username = e.target[0].value
+    const password = e.target[1].value
+        console.log({ username, password })
+    this.auth.logIn(username, password)
       .subscribe(user => {
         console.log('user on login', user)
         if (user) this.router.navigate(['./dashboard'])
