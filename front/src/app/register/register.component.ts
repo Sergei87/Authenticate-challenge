@@ -21,14 +21,14 @@ export class RegisterComponent implements OnInit {
     console.log(username, password)
 
     this.auth.registrate(username, password)
-      .subscribe(user => {
-        console.log('user on login', user)
-        if (user) this.router.navigate(['./dashboard'])
-      })
+      .subscribe(
+        user => {
+          console.log('user on login', user)
+          if (user) this.router.navigate(['./dashboard'])
+        },
+        err => {
+          console.log(err)
+        }
+      )
   }
-  public onCancel() {
-    this.router.navigate(['./start'])
-  }
-
-
 }

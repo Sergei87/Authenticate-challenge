@@ -32,6 +32,7 @@ app.use(passport.session());
 app.post('/register', (req, res, next) => {
   console.log(req.body);
   return findUser(req.body.username)
+      
     .then(user => {
       if (user) {
         res.status(401).end("User with this name already exist")
@@ -58,8 +59,7 @@ app.post('/login', (req, res, next) => {
       req.logIn(user, function(err) {
         return err ? next(err) : res.status(200).send(user);
       })
-    }
-    else next(err)//res.status(401).send({message: 'Authentication failed. Wrong password'})
+    } else res.status(401).send({message: 'Authentication failed. Wrong password'})
   })(req, res, next)
 })
 

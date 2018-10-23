@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { StartComponent } from './start/start.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 
@@ -16,7 +15,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    StartComponent,
     DashboardComponent
   ],
   imports: [
