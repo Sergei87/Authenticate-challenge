@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { AuthService } from '../services/auth.service'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -9,22 +10,24 @@ import { AuthService } from '../services/auth.service'
 })
 export class LoginComponent {
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private toastr: ToastrService) { }
 
   public loginUser(e) {
     e.preventDefault()
-
     const username = e.target[0].value
     const password = e.target[1].value
-        console.log({ username, password })
+    // console.log({ username, password })
     this.auth.logIn(username, password)
-      .subscribe(user => {
-        console.log('user on login', user)
-        if (user) this.router.navigate(['./dashboard'])
-      })
-  }
-  public onCancel() {
-    this.router.navigate(['./start'])
+      .subscribe(
+        user => {
+          // console.log('user on login', user)
+          if (user) this.router.navigate(['./dashboard'])
+        },
+        err => {
+          // console.log(err.error)
+          this.toastr.error(err.error.message)
+        }
+      )
   }
 
 }
