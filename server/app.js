@@ -13,7 +13,6 @@ const saltRounds = 10;
 
 const app = express()
 
-app.use(express.static('front/dist/front'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(session({
@@ -32,7 +31,7 @@ app.use(passport.session());
 app.post('/register', (req, res, next) => {
   console.log(req.body);
   return findUser(req.body.username)
-      
+
     .then(user => {
       if (user) {
         res.status(401).end("User with this name already exist")
@@ -63,9 +62,16 @@ app.post('/login', (req, res, next) => {
   })(req, res, next)
 })
 
-app.post('/subordinates', (req, res, next) => {
+app.get('/logout', (req, res) => {
+  console.log('**********************');
+  console.log(req.body, '-------------------');
+  req.logout();
+  res.send({msg: 'Success loguot'});
+})
+
+app.get('/subordinates', (req, res, next) => {
   console.log(req.body);
-  if (!req.user) return res.redirect('/')
+  if (!req.user) return res.send({msg: '/'})
   if (req.user.role === 'admin') {
     return User.getAll()
       .then(users => res.json(users))

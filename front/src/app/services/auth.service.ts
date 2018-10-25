@@ -15,4 +15,13 @@ export class AuthService {
   public registrate(username, password) {
     return this.http.post('/register', { username, password })
   }
+
+  public logOut() {
+    console.log('-------')
+    return this.http.get('/logout')
+  }
+
+  public getSubordinates() {
+    return this.http.get('/subordinates')
+  }
 }

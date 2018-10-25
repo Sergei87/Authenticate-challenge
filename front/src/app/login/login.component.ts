@@ -20,11 +20,11 @@ export class LoginComponent {
     this.auth.logIn(username, password)
       .subscribe(
         user => {
-          // console.log('user on login', user)
+          console.log('user on login', user)
           if (user) this.router.navigate(['./dashboard'])
         },
         err => {
-          // console.log(err.error)
+          console.log(err.error)
           this.toastr.error(err.error.message)
         }
       )
