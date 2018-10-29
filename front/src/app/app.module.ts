@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from './auth.guard'
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -25,7 +26,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HttpClientModule,
     ToastrModule.forRoot()
   ],
-  providers: [ { provide: LocationStrategy, useClass: HashLocationStrategy } ],
+  providers: [ AuthGuard,{ provide: LocationStrategy, useClass: HashLocationStrategy } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
